@@ -1,0 +1,89 @@
+-------------------------------------------------
+******************* Part 1 **********************
+-------------------------------------------------
+
+In your own terms, define the following terms:
+
+What is HTTP?
+Hypertext Transfer Protocol - the process by which browsers/clients and servers exchange information.
+
+What is a URL?
+Universal Resource Locator - the "address" of information on the Web.  The URL is comprised of the protocol, hostname, port, resouce, and query string.
+
+What is DNS?
+Domain Name System - a directory methodology that converts human-understandable domain names to IP addresses on the Internet.
+
+What is a query string?
+The section at the end of a URL that is included in a GET request to a server enabling a client to direct a server as to what information is being sought.  Allows you to pass key-value pairs into the url
+
+What are two HTTP verbs and how are they different?
+GET and POST.  GET is a method by which a browser uses a URL to ask a server for information; the server is not changed.  POST is method by which a browser can send information to a server in the body of a request; typically has the effect of changing the server in some way.
+
+What is an HTTP request?
+Information sent by a browser or client to a server.  Methods include GET, POST, and others.  May or may not change the server in some way.  Will include information such as preferred language, date and time, etc.  Follows the HTTP protocol.
+
+What is an HTTP response?
+Information returned to a browser or client from a server.  Includes a status code as to whether the browser's request was successful (and other states).  Will inclide website information and additional content.  From server to client.
+
+What is an HTTP header? Give a couple examples of request and response headers you have seen.
+Information sent to/from browsers and clients that enable the two to exchange information in a way that a user can best understand.  This is not the rendered page, but additional data.  Examples include preferred language, date/time, cookies, caching information, etc.
+Request headers: host, user-agent, accept, cookie, cache-control
+Response headers: content-type, last-modified, set-cookie, cache-control
+
+What are the processes that happen when you type “http://somesite.com/some/page.html” into a browser?
+- uses the http protocol to attempt to locate the hostname somesite.com: first on the local machine, then in the network, then with the ISP, then across the Internet via a DNS server.  Browser "resolves" the name into IP address.
+- the browser sends a GET request to the server over http protocol asking for the resource located at (or dynamically prepared via) "/some/page.html"
+- the server interprets the request and sends back a response indicating the status of the requested resource.
+- The browser makes a DOM from the html and finds other resources needed; the browser makes separate http requests for those resources and received responses from the server for each.
+
+
+
+-------------------------------------------------
+******************* Part 2 **********************
+-------------------------------------------------
+
+----- (1) -----
+--> curl -GET https://icanhazdadjoke.com/search?term=pirate
+What does a pirate pay for his corn? A buccaneer!
+What did the pirate say on his 80th birthday? Aye Matey!
+Why couldn't the kid see the pirate movie? Because it was rated arrr!
+Why do pirates not know the alphabet? They always get stuck at "C".
+Why are pirates called pirates? Because they arrr!
+
+----- (2) -----
+--> dig icanhazdadjoke.com
+
+; <<>> DiG 9.16.11 <<>> icanhazdadjoke.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33889
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;icanhazdadjoke.com.            IN      A
+
+;; ANSWER SECTION:
+icanhazdadjoke.com.     77      IN      A       104.21.91.232
+icanhazdadjoke.com.     77      IN      A       172.67.181.69
+
+;; Query time: 3 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1)
+;; WHEN: Tue Jan 26 16:58:36 Eastern Standard Time 2021
+;; MSG SIZE  rcvd: 79
+
+----- (3) -----
+--> ~/Coding/Python 
+$ ipython -m http.server
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+::1 - - [26/Jan/2021 17:03:42] "GET / HTTP/1.1" 200 -
+::1 - - [26/Jan/2021 17:03:49] "GET /demo.html HTTP/1.1" 200 -
+::1 - - [26/Jan/2021 17:03:49] "GET /demo.css HTTP/1.1" 200 -
+::1 - - [26/Jan/2021 17:03:49] "GET /demo.js HTTP/1.1" 200 -
+
+
+-------------------------------------------------
+******************* Part 3 **********************
+-------------------------------------------------
+ --> no, the input values are no longer included in the query string section of the url.
